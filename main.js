@@ -1,29 +1,19 @@
-// main.js
-
-// Modules to control application life and create native browser window
-import { app, BrowserWindow } from 'electron'
-import { join } from 'path'
+const { app, BrowserWindow } = require('electron');
+const { join } = require('path');
 
 function createWindow () {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     webPreferences: {
       preload: join(__dirname, 'preload.js')
-    }
+    },
   })
-
-  // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
 
